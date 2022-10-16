@@ -27,7 +27,7 @@ jobs:
           mkdir hello-deb
           mkdir -p hello-deb/usr/local/bin
           cp hello hello-deb/usr/local/bin
-
+          
       - uses: jiro4989/build-deb-action@v2
         with:
           package: hello
