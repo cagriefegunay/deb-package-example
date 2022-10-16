@@ -24,7 +24,7 @@ jobs:
           mkdir .debpkg
           mkdir -p .debpkg/usr/local/bin
           git clone https://github.com/cagriefegunay/deb-package-example.git
-          cd deb-package-example && go build -v ./... && cp main ~/.debpkg/usr/local/bin
+          cd deb-package-example && go build -v ./... && cp hello ~/.debpkg/usr/local/bin
 
       - uses: jiro4989/build-deb-action@v2
         with:
