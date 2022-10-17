@@ -3,9 +3,7 @@ name: build
 on:
   push:
     tags:
-      - 'v0.0.1'
-  pull_request:
-    branches: main
+      - 'v*.*.*'
 
 jobs:
   build:
@@ -33,6 +31,6 @@ jobs:
           package: hello
           package_root: hello-deb
           maintainer: Example Boy <boy@example.com>
-          version: 0.0.1 # refs/tags/v*.*.*
+          version: ${{ github.ref }} # refs/tags/v*.*.*
           arch: 'amd64'
           desc: 'this is sample package.'
