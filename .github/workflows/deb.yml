@@ -37,9 +37,11 @@ jobs:
 
       - name: Checksum
         run: |
-          sha256sum hello_*.deb
-
+          sha256sum hello_*.deb > $(ls hello_*.deb).sha256sum
+          echo hello_*.deb.sha256sum
+      
       - name: Release
         uses: softprops/action-gh-release@v0.1.14
         with:
-          files: hello_*.deb
+          files: |
+            hello_*
