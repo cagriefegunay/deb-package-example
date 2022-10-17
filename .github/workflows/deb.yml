@@ -4,8 +4,6 @@ on:
   push:
     tags:
       - 'v*.*.*'
-  pull_request:
-    branches: main
 
 jobs:
   build:
@@ -19,17 +17,19 @@ jobs:
         with:
           go-version: 1.19
       
+      - name: Build binaries
+        run: go build -v ./...
+      
       - name: Prepare
         run: |
-          mkdir .debpkg
-          mkdir -p .debpkg/usr/local/bin
-          git clone https://github.com/cagriefegunay/deb-package-example.git
-          cd deb-package-example && go build -v ./... && cp hello ~/.debpkg/usr/local/bin
-
+          mkdir hello-deb
+          mkdir -p hello-deb/usr/local/bin
+          cp hello hello-deb/usr/local/bin
+          
       - uses: jiro4989/build-deb-action@v2
         with:
           package: hello
-          package_root: .debpkg
+          package_root: hello-deb
           maintainer: Example Boy <boy@example.com>
           version: ${{ github.ref }} # refs/tags/v*.*.*
           arch: 'amd64'
