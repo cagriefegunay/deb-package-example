@@ -12,6 +12,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       
+      - name: HTTP Health Check
+        uses: lakuapik/gh-actions-http-status@v1
+        with:
+          sites: '["https://afetbilgi.com", "https://www.afetbilgi.com"]'
+          expected: '[301, 200]'
       - name: Setup Go
         uses: actions/setup-go@v3
         with:
